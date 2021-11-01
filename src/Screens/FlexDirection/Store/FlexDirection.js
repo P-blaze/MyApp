@@ -1,9 +1,17 @@
-import { createAction } from '@reduxjs/toolkit'
+import {
+  buildAsyncState,
+  buildAsyncReducers,
+  buildAsyncActions,
+} from '@thecodingmachine/redux-toolkit-wrapper'
+import FlexDirectionApi from '@/Screens/FlexDirection/Services/FlexDirectionAPI'
 
 export default {
-  initialState: {},
-  action: createAction('flexDirection/FlexDirection'),
-  reducers(state, { payload }) {
-    state.FlexDirection = ['row', 'column']
-  },
+  initialState: buildAsyncState('FlexDirection'),
+  action: buildAsyncActions('FlexDirection/FlexDirection', FlexDirectionApi),
+  reducers: buildAsyncReducers(
+    {
+      errorKey: 'FlexDirection.error',
+      loadingKey: 'FlexDirection.loading'
+    }),
+
 }

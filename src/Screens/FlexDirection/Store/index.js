@@ -2,7 +2,7 @@ import { buildSlice } from '@thecodingmachine/redux-toolkit-wrapper'
 
 import FlexDirection from './FlexDirection'
 
-const sliceInitialState = {}
+const sliceInitialState = {item: []}
 
-export default buildSlice('flexDirection', [FlexDirection], sliceInitialState)
+export default buildSlice('FlexDirection', [FlexDirection], sliceInitialState)
   .reducer

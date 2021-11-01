@@ -1,17 +1,27 @@
 import { Box } from 'native-base'
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import FlexDirection from "../Store/FlexDirection" 
 import FlexComponent from '@/Screens/FlexDirection/Components/FlexComponent'
 import ButtonComponents from '@/Screens/FlexDirection/Components/ButtonComponents'
 
 const FlexDirectionBasics = () => {
   const [currentFlex, setCurrentFlex] = useState('row')
-  const buttonNames = ['row', 'column', 'row-reverse', 'column-reverse']
+  const buttonNames = useSelector(state => state.FlexDirection.item)
   const boxColors = ['primary.200', 'primary.400', 'primary.600']
 
   const setFlexHandler = flexValue => {
     setCurrentFlex(flexValue)
   }
+
+  useEffect(()=>{
+    dispatch(FlexDirection.action())
+  },[])
+
+  const dispatch = useDispatch()
+
+  const state = useSelector(state => state)
+
   return (
     <Box flex={1} bg="blue.100">
       <Box
